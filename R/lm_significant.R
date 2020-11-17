@@ -25,7 +25,7 @@ lm_significant <- function(data, res, preds = NULL, p = 0.01, verbose = TRUE, al
 
   form <- as.formula(paste(res, "~", x))
 
-  modelFit$`All Predictors` <- lm(formula = form, data = data, ...)
+  modelFit$`All Predictors` <- stats::lm(formula = form, data = data, ...)
 
   #LINEAR MODEL WITH ONLY THE OPTIMIZED PREDICTORS
 
@@ -35,7 +35,7 @@ lm_significant <- function(data, res, preds = NULL, p = 0.01, verbose = TRUE, al
 
   form1 <- as.formula(paste(res, "~", x1))
 
-  modelFit$`Opt Predictors` <- lm(formula = form1, data = data, ...)
+  modelFit$`Opt Predictors` <- stats::lm(formula = form1, data = data, ...)
 
   if(verbose) cat("\n\nFinal Optimized Predictors:", predictors, "\n")
 

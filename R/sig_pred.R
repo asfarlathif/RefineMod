@@ -34,15 +34,15 @@ sig_pred <- function(data, res, preds = NULL, p = 0.01, verbose = FALSE, ...)
     form <- as.formula(paste(res, "~", x1))
 
     #FITTING THE LINEAR MODEL
-    modelFit <- lm(formula = form, data = data, ...)
+    modelFit <- stats::lm(formula = form, data = data, ...)
 
     #ANOVA OF THE FIRTTED MODEL TO IDENTIFY SIGNIFICANT VARIABLES
-    anov <- anova(modelFit)
+    anov <- stats::anova(modelFit)
 
     #SORTING THE PREDICTORS BASED ON P-VALUE AND FILTERING ONLY THOSE BELOW SPECIFIED THRESHOLD
     predictors <- anov %>%
-      arrange(`Pr(>F)`) %>%
-      filter(`Pr(>F)` < p) %>%
+      dplyr::arrange(`Pr(>F)`) %>%
+      dplyr::filter(`Pr(>F)` < p) %>%
       row.names()
 
     #ONLY PASSES WHEN ALL VARIABLES IN ANOVA HAS P-VALUE LOWER THAN THRESHOLD
@@ -55,11 +55,11 @@ sig_pred <- function(data, res, preds = NULL, p = 0.01, verbose = FALSE, ...)
   if(verbose) cat("\n\nFinal Optimization...\n")
 
   #MODEL FITTING BY DROPPING TERMS FROM MODEL AND EVALUATING THIER SIGNIFICANCE
-  sigf <- drop1(modelFit, test = "F")
+  sigf <- stats::drop1(modelFit, test = "F")
 
   #FINAL PREDICTORS SELECTION BASED ON THE RESULT FROM drop1()
   predictors <- sigf %>%
-    filter(`Pr(>F)` < p) %>%
+    dplyr::filter(`Pr(>F)` < p) %>%
     row.names()
 
   predictors
