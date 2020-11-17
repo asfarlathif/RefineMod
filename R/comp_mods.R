@@ -12,6 +12,8 @@ comp_mods <- function(mod1, ..., newdata = NULL){
 
   analytics <- map(obs_pred, caret::defaultSummary)
 
-  analytics
+  names(analytics) <- paste("model", 1:length(analytics), sep = "")
+
+  t(data.frame(analytics))
 
 }
