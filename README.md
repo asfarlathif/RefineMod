@@ -5,10 +5,8 @@
 
 <!-- badges: start -->
 
-``` r
-badgecreatr::badge_lifecycle()
-#> [1] "[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)"
-```
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![packageversion](https://img.shields.io/badge/Package%20version-0.0.0.9000-orange.svg?style=flat-square)](commits/master)
 
 <!-- badges: end -->
 
@@ -57,6 +55,8 @@ usethis::use_test("function name") #intialize Funstion specific test scripts
 usethis::use_package("package name") #To include package dependencies in the DESCRIPTION file
 
 usethis::use_vignette("vignette name") #Initialize vignette RMD file
+
+usethis::use_news_md() #Adding Changelogs
 
 #PACKAGE DIAGNOSIS
 

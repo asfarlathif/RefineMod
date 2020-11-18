@@ -16,10 +16,12 @@ knitr::opts_chunk$set(
 # RefineMod
 
 <!-- badges: start -->
-```{r}
-badgecreatr::badge_lifecycle()
+```{r, echo = FALSE}                                                                                                        
+version <- as.vector(read.dcf('DESCRIPTION')[, 'Version'])                                                                 
+version <- gsub('-', '.', version)
 ```
 
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental) [![packageversion](https://img.shields.io/badge/Package%20version-`r version`-orange.svg?style=flat-square)](commits/master)
 
 <!-- badges: end -->
 
@@ -65,6 +67,8 @@ usethis::use_test("function name") #intialize Funstion specific test scripts
 usethis::use_package("package name") #To include package dependencies in the DESCRIPTION file
 
 usethis::use_vignette("vignette name") #Initialize vignette RMD file
+
+usethis::use_news_md() #Adding Changelogs
 
 #PACKAGE DIAGNOSIS
 
