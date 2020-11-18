@@ -6,7 +6,7 @@ Authors@R:
            family = "Lathif",
            role = c("aut", "cre"),
            email = "asfarlathifbt@gmail.com")
-Description: RefineMod provides functions to refine and optimize linear regression models. Models can be refined to only those predictors that are statistically significant in explaining the response variable. Linear regression models can also be compared on the basis of theor performace like RMSE, R2 and MAE.
+Description: RefineMod provides functions to refine and optimize linear regression models. Models can be refined to only those predictors that are statistically significant in explaining the response variable. Linear regression models can also be compared on the basis of their performance like RMSE, R2 and MAE.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

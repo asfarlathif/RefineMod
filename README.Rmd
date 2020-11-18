@@ -18,43 +18,59 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of RefineMod is to ...
+The goal of RefineMod is to provide functions to refine and optimize linear regression models. Models can be refined to only those predictors that are statistically significant in explaining the response variable. Linear regression models can also be compared on the basis of their performance like RMSE, R2 and MAE.
+
 
 ## Installation
 
-You can install the released version of RefineMod from [CRAN](https://CRAN.R-project.org) with:
+The development version of RefineMod can be installed from [GitHub](https://github.com/) with:
 
 ``` r
-install.packages("RefineMod")
-```
-
-And the development version from [GitHub](https://github.com/) with:
-
-``` r
-# install.packages("devtools")
 devtools::install_github("asfarlathif/RefineMod")
 ```
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+### Refining a linear regression model with only its significant predictors
 
-```{r example, eval=FALSE}
+`cancer_sample` data set from `datateachr` package
+
+`radius_mean` as response variable and all (except `diagnosis`) as input predictors
+
+```{r}
 library(RefineMod)
-## basic example code
+library(datateachr)
+
+mod <- lm(radius_mean ~ ., cancer_sample[,-2]) #lm() call without any predictor selection
+
+summary(mod)
+
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+Above is the model built using all the input predictors as the independent variables while building the model. Many of these variables don’t show any statistical significance (in terms of their p-value) to be included in the model.
 
-```{r cars}
-summary(cars)
+```{r}
+
+sig_mod <- lm_significant(cancer_sample[,-2], res = "radius_mean") #model with optimized predictors
+
+summary(sig_mod)
+
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
+`perimeter_mean`, `compactness_mean`, `radius_worst`, `area_worst`, `concavity_mean`, `perimeter_worst` and `compactness_worst` are the predictors that were found to be statistically significant while building a model for the response variable `radius_mean`.
 
-You can also embed plots, for example:
+### Comparing Model Performance between one or more lm models
 
-```{r pressure, eval = FALSE}
-plot(pressure)
+```{r}
+
+train <- mtcars[1:20,]
+test <- mtcars[21:30,]
+
+mod1 <- lm(mpg~wt, train)
+mod2 <- lm(mpg~cyl, train)
+mod3 <- lm(mpg~wt+cyl, train)
+mod4 <- lm(mpg~carb, train)
+
+comp_mods(mod1, mod2, mod3, mod4, newdata = test)
 ```
 
 ## Code of Conduct
