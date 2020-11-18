@@ -1,3 +1,13 @@
+#' Title
+#'
+#' @param mod1
+#' @param ...
+#' @param newdata
+#'
+#' @return
+#' @export
+#'
+#' @examples
 comp_mods <- function(mod1, ..., newdata = NULL){
 
   modList <- list(mod1, ...)

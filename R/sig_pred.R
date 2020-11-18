@@ -1,3 +1,16 @@
+#' Title
+#'
+#' @param data
+#' @param res
+#' @param preds
+#' @param p
+#' @param verbose
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
 sig_pred <- function(data, res, preds = NULL, p = 0.01, verbose = FALSE, ...)
 {
   #CHECKING IF THE RESPONSE VARIABLE IS NUMERIC -- ERROR MESSAGE IS PRODUCED FOR NON NUMERIC RESPONSE VARIABLE USING stop()

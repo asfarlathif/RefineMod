@@ -1,3 +1,17 @@
+#' Title
+#'
+#' @param data
+#' @param res
+#' @param preds
+#' @param p
+#' @param verbose
+#' @param all
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
 lm_significant <- function(data, res, preds = NULL, p = 0.01, verbose = TRUE, all = FALSE, ...){
 
   #CHECKING IF THE RESPONSE VARIABLE IS NUMERIC -- ERROR MESSAGE IS PRODUCED FOR NON NUMERIC RESPONSE VARIABLE USING stop()
