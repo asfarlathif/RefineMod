@@ -13,6 +13,52 @@ that are statistically significant in explaining the response variable.
 Linear regression models can also be compared on the basis of their
 performance like RMSE, R2 and MAE.
 
+## Package Development
+
+This package was developed as an assignment for **STAT545B** at UBC
+using `devtools` and `usethis` packages.
+
+The codes and pipeline used to create this package is as follows
+
+``` r
+usethis::create_package(path = "RefineMod") #To initiate the package project locally
+
+usethis::use_git() #To create a git repository of the package locally
+```
+
+This local repo is then linked to an empty github repository created
+with the same name `RefineMod`
+
+    git remote add origin https://github.com/asfarlathif/RefineMod.git
+    git branch -M main
+    git push -u origin main
+
+``` r
+usethis::use_r("function name") #To create script files of the functions in this package
+
+#All the functions were documented using the roxygen skeleton
+
+devtools::document() #To record the documentation files and update NAMESPACE
+
+usethis::use_readme_rmd() #README file initiation
+
+usethis::use_mit_license() #LICENSE file
+
+usethis::use_code_of_conduct() #CODE OF CONDUCT file
+
+usethis::use_testthat() #To Create tests to include test scripts for the functions
+usethis::use_test("function name") #intialize Funstion specific test scripts
+
+usethis::use_package("package name") #To include package dependencies in the DESCRIPTION file
+
+devtools::build_vignettes("vignette name") #Initialize vignette RMD file
+
+#PACKAGE DIAGNOSIS
+
+devtools::test() #Run all testthat files
+devtools::check() #Head to Toe evaluation of the package
+```
+
 ## Installation
 
 The development version of RefineMod can be installed from
