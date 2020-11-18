@@ -1,16 +1,25 @@
-#' Title
+#' Significant Predictors in an lm model
 #'
-#' @param data
-#' @param res
-#' @param preds
-#' @param p
-#' @param verbose
-#' @param ...
+#' This function finds all the predictor variables that are significant to a linear regression model from the input predictors
+#'
+#' @param data a data frame object containing the variables to be used as response and predictors in the model.
+#' @param res a character vector of length 1 that matches the name of the response variable column in data. Response variable in the data must be of numeric type.
+#' @param preds a character vector of predictor variables in the data. When not specified function will take all variables in data other than response variable as input predictors to start with. A default of NULL is given to this argument to provide the flexibility of using either user defined predictor variables or all but response variable as predictors from the data.
+#' @param p a numeric value that denotes the threshold for selecting the predictors based on their statistical significance in building the model. Default p-value threshold is 0.01.
+#' @param verbose a logical value denoting whether or not to print progress messages as the function is being run. Default is TRUE
+#' @param ... additional arguments to be passed to the inner lm() function calls. Refer to the documentation of lm() for more details on those arguments
 #'
 #' @return
+#'
+#' A character vector with the names of all the significant predictors from the original lm call.
+#'
 #' @export
 #'
 #' @examples
+#' #cancer_sample data from datateachr package
+#'
+#' sig_mod <- sig_pred(cancer_sample[,-2], res = "radius_mean")
+#'
 sig_pred <- function(data, res, preds = NULL, p = 0.01, verbose = FALSE, ...)
 {
   #CHECKING IF THE RESPONSE VARIABLE IS NUMERIC -- ERROR MESSAGE IS PRODUCED FOR NON NUMERIC RESPONSE VARIABLE USING stop()

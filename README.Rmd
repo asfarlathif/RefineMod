@@ -38,7 +38,7 @@ devtools::install_github("asfarlathif/RefineMod")
 
 This is a basic example which shows you how to solve a common problem:
 
-```{r example}
+```{r example, eval=FALSE}
 library(RefineMod)
 ## basic example code
 ```
@@ -53,8 +53,11 @@ You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-da
 
 You can also embed plots, for example:
 
-```{r pressure, echo = FALSE}
+```{r pressure, eval = FALSE}
 plot(pressure)
 ```
 
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!
+## Code of Conduct
+
+Please note that the RefineMod project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
+

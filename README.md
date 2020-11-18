@@ -53,7 +53,13 @@ up-to-date.
 
 You can also embed plots, for example:
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
+``` r
+plot(pressure)
+```
 
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub\!
+## Code of Conduct
+
+Please note that the RefineMod project is released with a [Contributor
+Code of
+Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html).
+By contributing to this project, you agree to abide by its terms.
