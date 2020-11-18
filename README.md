@@ -51,7 +51,7 @@ usethis::use_test("function name") #intialize Funstion specific test scripts
 
 usethis::use_package("package name") #To include package dependencies in the DESCRIPTION file
 
-devtools::build_vignettes("vignette name") #Initialize vignette RMD file
+usethis::use_vignette("vignette name") #Initialize vignette RMD file
 
 #PACKAGE DIAGNOSIS
 

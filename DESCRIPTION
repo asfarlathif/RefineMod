@@ -13,7 +13,9 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Suggests: 
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
 Imports: 
     magrittr,
     dplyr,
@@ -23,3 +25,4 @@ Imports:
     ggplot2,
     broom,
     caret
+VignetteBuilder: knitr

@@ -1,0 +1,149 @@
+---
+title: "RefineMod"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{RefineMod}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This vignette explains about the details and usage of functions in the RefineMod package. This package provide functions to refine and optimize linear regression models. Models can be refined to only those predictors that are statistically significant in explaining the response variable. Linear regression models can also be compared on the basis of their performance like RMSE, R2 and MAE.
+
+There are currently three functions in this package:
+
++ `sig_pred`
++ `lm_significant`
++ `comp_mods`
+
+### Loading the package
+
+```{r setup}
+library(RefineMod)
+
+library(datateachr) #Dependency
+```
+
+### sig_pred
+
+This function finds all the predictor variables that are significant to a linear regression model from the input predictors
+
+```
+sig_pred(data, res, preds = NULL, p = 0.01, verbose = FALSE, ...)
+
+```
+`data`	
+a data frame object containing the variables to be used as response and predictors in the model.
+
+`res`	
+a character vector of length 1 that matches the name of the response variable column in data. Response variable in the data must be of numeric type.
+
+`preds`	
+a character vector of predictor variables in the data. When not specified function will take all variables in data other than response variable as input predictors to start with. A default of NULL is given to this argument to provide the flexibility of using either user defined predictor variables or all but response variable as predictors from the data.
+
+`p`	
+a numeric value that denotes the threshold for selecting the predictors based on their statistical significance in building the model. Default p-value threshold is 0.01.
+
+`verbose`	
+a logical value denoting whether or not to print progress messages as the function is being run. Default is TRUE
+
+`...`	
+additional arguments to be passed to the inner lm() function calls. Refer to the documentation of lm() for more details on those arguments
+
+```{r}
+
+sig_mod <- sig_pred(cancer_sample[,-2], res = "radius_mean")
+
+```
+
+### lm_significant
+
+lm_significant is used to optimize a multiple linear regression model to only those predictor variables that are statistically significant for building that model. The function currently only supports additive model linear regressions.
+
+```
+lm_significant(
+  data,
+  res,
+  preds = NULL,
+  p = 0.01,
+  verbose = TRUE,
+  all = FALSE,
+  ...
+)
+```
+`data`	
+a data frame object containing the variables to be used as response and predictors in the model.
+
+`res`	
+a character vector of length 1 that matches the name of the response variable column in data. Response variable in the data must be of numeric type.
+
+`preds`	
+a character vector of predictor variables in the data. When not specified function will take all variables in data other than response variable as input predictors to start with. A default of NULL is given to this argument to provide the flexibility of using either user defined predictor variables or all but response variable as predictors from the data.
+
+`p`	
+a numeric value that denotes the threshold for selecting the predictors based on their statistical significance in building the model. Default p-value threshold is 0.01.
+
+`verbose`	
+a logical value denoting whether or not to print progress messages as the function is being run. Default is TRUE
+
+`all`	
+if TRUE, the function will return a list with two lm model objects. The first one is the original call with all the input predictors and the second is the model with only the significant predictors. The default is FALSE which returns a single lm object with only the significant predictors
+
+`...`	
+additional arguments to be passed to the inner lm() function calls. Refer to the documentation of lm() for more details on those arguments
+
+```{r}
+#Only the optimized model
+
+sig_mod1 <- lm_significant(cancer_sample[,-2], res = "radius_mean")
+
+summary(sig_mod1)
+```
+
+
+```{r}
+#Both the original model and optimized model
+
+sig_mod2 <- lm_significant(mtcars, res = "mpg", all = TRUE)
+
+sig_mod2
+
+summary(sig_mod2$`Opt Predictors`)
+
+```
+
+### comp_mods
+
+This function takes in one or more linear regression models and compares the RMSE, R2 and MAE of those models with or without a new input data.
+
+```
+comp_mods(mod1, ..., newdata = NULL)
+```
+`mod1`	
+an object containing results returned by lm function
+
+`...`	
+additional lm model object
+
+`newdata`	
+newdata than used for training the model. By default NULL and the function evaluated model performance based on training data
+
+```{r}
+train <- mtcars[1:20,]
+test <- mtcars[21:30,]
+
+mod1 <- lm(mpg~wt, train)
+mod2 <- lm(mpg~cyl, train)
+mod3 <- lm(mpg~wt+cyl, train)
+mod4 <- lm(mpg~carb, train)
+
+comp_mods(mod1, mod2, mod3, mod4, newdata = test)
+
+```
+
