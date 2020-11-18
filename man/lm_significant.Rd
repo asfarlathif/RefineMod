@@ -40,6 +40,8 @@ lm_significant is used to optimize a multiple linear regression model to only th
 \examples{
 #cancer_sample data from datateachr package
 
+library(datateachr)
+
 sig_mod1 <- lm_significant(cancer_sample[,-2], res = "radius_mean")
 
 #Both the original model and optimized model

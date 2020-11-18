@@ -27,6 +27,7 @@ This function finds all the predictor variables that are significant to a linear
 }
 \examples{
 #cancer_sample data from datateachr package
+library(datateachr)
 
 sig_mod <- sig_pred(cancer_sample[,-2], res = "radius_mean")
 

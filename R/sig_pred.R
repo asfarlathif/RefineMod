@@ -17,6 +17,7 @@
 #'
 #' @examples
 #' #cancer_sample data from datateachr package
+#' library(datateachr)
 #'
 #' sig_mod <- sig_pred(cancer_sample[,-2], res = "radius_mean")
 #'
@@ -53,7 +54,7 @@ sig_pred <- function(data, res, preds = NULL, p = 0.01, verbose = FALSE, ...)
     #FORMULA FOR FITTING THE LINEAR MODEL
     x1 <- paste0(predictors,collapse = "+")
 
-    form <- as.formula(paste(res, "~", x1))
+    form <- stats::as.formula(paste(res, "~", x1))
 
     #FITTING THE LINEAR MODEL
     modelFit <- stats::lm(formula = form, data = data, ...)

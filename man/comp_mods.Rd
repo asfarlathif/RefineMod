@@ -14,10 +14,10 @@ comp_mods(mod1, ..., newdata = NULL)
 \item{newdata}{newdata than used for training the model. By default NULL and the function evaluated model performance based on training data}
 }
 \value{
-a dataframe with each row representing an input model and three columns of model performance evaluation criteria (RMSE, R2 and MIA)
+a dataframe with each row representing an input model and three columns of model performance evaluation criteria (RMSE, R2 and MAE)
 }
 \description{
-This function takes in one or more linear regression models and compares the RMSE, R2 and MIA of those models with or without a new input data.
+This function takes in one or more linear regression models and compares the RMSE, R2 and MAE of those models with or without a new input data.
 }
 \examples{
 train <- mtcars[1:20,]

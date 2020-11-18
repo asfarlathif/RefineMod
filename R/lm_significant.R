@@ -21,6 +21,8 @@
 #' @examples
 #' #cancer_sample data from datateachr package
 #'
+#' library(datateachr)
+#'
 #' sig_mod1 <- lm_significant(cancer_sample[,-2], res = "radius_mean")
 #'
 #' #Both the original model and optimized model
@@ -52,7 +54,7 @@ lm_significant <- function(data, res, preds = NULL, p = 0.01, verbose = TRUE, al
 
   x <- paste0(predictors,collapse = "+")
 
-  form <- as.formula(paste(res, "~", x))
+  form <- stats::as.formula(paste(res, "~", x))
 
   modelFit$`All Predictors` <- stats::lm(formula = form, data = data, ...)
 
@@ -62,7 +64,7 @@ lm_significant <- function(data, res, preds = NULL, p = 0.01, verbose = TRUE, al
 
   x1 <- paste0(predictors,collapse = "+")
 
-  form1 <- as.formula(paste(res, "~", x1))
+  form1 <- stats::as.formula(paste(res, "~", x1))
 
   modelFit$`Opt Predictors` <- stats::lm(formula = form1, data = data, ...)
 
